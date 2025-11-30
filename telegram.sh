@@ -1,35 +1,33 @@
 #!/bin/bash
 
 echo "====================================================="
-echo " 🚀 Telegram 时间同步系统 - 一键部署（GitHub 自动下载版）"
+echo " 🚀 Telegram 时间同步系统 - GitHub 一键部署（兼容 Debian12/Ubuntu24）"
 echo "====================================================="
 
-# GitHub RAW 地址（换成你的仓库地址）
 GITHUB_RAW_BASE="https://raw.githubusercontent.com/xl78482/Telegram-Time-Synchronization-Name-System/main"
-
 APP_DIR="/root/tg_time_sync"
 SERVICE_NAME="tg_time_sync"
 
 PYTHON_PATH=$(command -v python3 || echo /usr/bin/python3)
 
-echo "📁 安装目录: $APP_DIR"
+echo "📁 创建安装目录: $APP_DIR"
 mkdir -p "$APP_DIR"
 
-echo "📥 从 GitHub 下载 main.py ..."
+echo "📥 下载 main.py..."
 curl -fsSL "$GITHUB_RAW_BASE/main.py" -o "$APP_DIR/main.py"
 if [ $? -ne 0 ]; then
-    echo "❌ 从 GitHub 下载 main.py 失败！"
+    echo "❌ 下载 main.py 失败，请检查仓库地址"
     exit 1
 fi
 echo "✔ main.py 下载完成"
 
-echo "🔍 检查 python3 / pip3 ..."
+echo "🔍 安装 python3 / pip3 ..."
 apt update -y
 apt install -y python3 python3-pip
 
-echo "🔍 检查 Telethon / aiohttp 依赖 ..."
+echo "🔍 检查 Telethon / aiohttp 是否已安装..."
 $PYTHON_PATH - << 'EOF'
-import importlib, subprocess, sys
+import importlib, subprocess, sys, os
 
 pkgs = ["telethon", "aiohttp"]
 missing = []
@@ -41,8 +39,10 @@ for p in pkgs:
         missing.append(p)
 
 if missing:
-    print("📦 正在安装缺失依赖:", ", ".join(missing))
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "--break-system-packages"] + missing)
+    print("📦 安装依赖到用户目录 (~/.local):", ", ".join(missing))
+    subprocess.check_call([
+        sys.executable, "-m", "pip", "install", "--user"
+    ] + missing)
 else:
     print("✔ 所有依赖已安装")
 EOF
@@ -56,6 +56,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=${APP_DIR}
+Environment=PYTHONPATH=/root/.local/lib/python3.11/site-packages
 ExecStart=${PYTHON_PATH} ${APP_DIR}/main.py
 Restart=always
 RestartSec=3
@@ -76,5 +77,5 @@ systemctl enable ${SERVICE_NAME}
 echo ""
 echo "====================================================="
 echo "🎉 部署完成！"
-echo "🔍 查看日志： journalctl -u ${SERVICE_NAME} -f"
+echo "📌 查看日志： journalctl -u ${SERVICE_NAME} -f"
 echo "====================================================="
