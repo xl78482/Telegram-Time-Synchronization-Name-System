@@ -44,7 +44,7 @@
 
 ## 📦 安装教程（真正的一键部署）
 
-### ① 一键安装（适合 Debian / Ubuntu / CentOS）
+### ① 首先部署（适合 Debian / Ubuntu / CentOS）
 
 ```
 curl -fsSL https://raw.githubusercontent.com/xl78482/Telegram-Time-Synchronization-Name-System/main/telegram.sh | bash
