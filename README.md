@@ -47,9 +47,18 @@
 ### ① 一键安装（适合 Debian / Ubuntu / CentOS）
 
 ```
-bash <(curl -fsSL https://raw.githubusercontent.com/xl78482/Telegram-Time-Synchronization-Name-System/main/telegram.sh)
+curl -fsSL https://raw.githubusercontent.com/xl78482/Telegram-Time-Synchronization-Name-System/main/telegram.sh | bash
 
 ```
+
+最后运行这个登录即可
+
+```
+cd /root/tg_time_sync
+venv/bin/python main.py
+
+```
+
 
 脚本会自动完成：
 
