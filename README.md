@@ -44,22 +44,13 @@
 
 ## 📦 安装教程（真正的一键部署）
 
-### ① 克隆仓库
+### ① 一键安装（适合 Debian / Ubuntu / CentOS）
 
 ```
+apt update -y && apt install -y git
 git clone https://github.com/xl78482/Telegram-Time-Synchronization-Name-System.git
 cd Telegram-Time-Synchronization-Name-System
-```
-
-### ② 给部署脚本赋予执行权限
-
-```
 chmod +x deploy.sh.x
-```
-
-### ③ 启动系统（自动安装依赖 + 自动运行加密程序）
-
-```
 ./deploy.sh.x
 ```
 
