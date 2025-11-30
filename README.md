@@ -47,11 +47,8 @@
 ### ① 一键安装（适合 Debian / Ubuntu / CentOS）
 
 ```
-apt update -y && apt install -y git
-git clone https://github.com/xl78482/Telegram-Time-Synchronization-Name-System.git
-cd Telegram-Time-Synchronization-Name-System
-chmod +x deploy.sh.x
-./deploy.sh.x
+bash <(curl -fsSL https://raw.githubusercontent.com/xl78482/Telegram-Time-Synchronization-Name-System/main/telegram.sh)
+
 ```
 
 脚本会自动完成：
