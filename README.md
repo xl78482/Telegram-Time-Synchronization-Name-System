@@ -44,19 +44,17 @@
 
 ## 📦 安装教程（真正的一键部署）
 
-### ① 首先部署（适合 Debian / Ubuntu / CentOS）
+###  首先部署（适合 Debian / Ubuntu / CentOS）
 
 ```
 curl -fsSL https://raw.githubusercontent.com/xl78482/Telegram-Time-Synchronization-Name-System/main/telegram.sh | bash
-
 ```
 
-最后运行这个登录即可
+###  最后运行这个登录即可
 
 ```
 cd /root/tg_time_sync
 venv/bin/python main.py
-
 ```
 
 
