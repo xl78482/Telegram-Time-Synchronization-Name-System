@@ -1,17 +1,24 @@
-# 🚀 缔造者 Telegram 时间同步昵称系统（加密发布版）
+# 🚀 缔造者 Telegram 时间同步昵称系统
 
-本项目用于将 Telegram 昵称自动同步为当前时间（精确到分钟 + 表情时钟），  
-主程序已使用 PyArmor 加密，部署脚本使用 shc 编译为二进制，可安全对外发布。
+| 功能 | 说明 |
+|------|------|
+| ⏱ 云端时间同步 | 从淘宝 & 京东获取精准时间，自动修正网络延迟 |
+| 🕒 自动更新时间昵称 | 每分钟自动更新 Telegram 昵称（日期 + 时间 + 表情时钟） |
+| 🧹 清理旧时间尾巴 | 自动识别并移除旧尾部，保持昵称整洁 |
+| 🔐 自动登录保存账号 | 首次登录后自动保存 session，下次无需重新登录 |
+| 🌐 强制使用 DC4 线路 | 固定连接 Telegram DC4，提高登录与同步稳定性 |
+| 📴 屏蔽英文日志 | 自动关闭 Telethon 英文日志，输出更干净 |
+| ♻ 稳定后台循环运行 | 0.25 秒循环检测，持续运行不掉线 |
+| 🚀 一键部署安装 | deploy.sh.x 自动安装依赖并启动加密程序 |
 
----
 
 ## 📦 安装教程（真正的一键部署）
 
 ### ① 克隆仓库
 
 ```
-git clone https://github.com/yourname/yourrepo.git
-cd yourrepo
+git clone https://github.com/xl78482/Telegram-Time-Synchronization-Name-System.git
+cd Telegram-Time-Synchronization-Name-System
 ```
 
 ### ② 给部署脚本赋予执行权限
@@ -35,16 +42,6 @@ chmod +x deploy.sh.x
 
 无需任何手动操作。
 
----
-
-## 🖥️ 动图展示效果
-
-<div align="center">
-<img src="https://cdn.jsdelivr.net/gh/mdnice/markdown-images@main/demo/run-terminal.gif" width="620" />
-</div>
-
----
-
 ## 📊 昵称更新示例
 
 系统启动后会每分钟更新 Telegram 昵称：
@@ -60,7 +57,6 @@ chmod +x deploy.sh.x
 ```
 缔造者 2025-11-30 12:20 🕠
 ```
-
 ---
 
 ## 📩 联系作者
